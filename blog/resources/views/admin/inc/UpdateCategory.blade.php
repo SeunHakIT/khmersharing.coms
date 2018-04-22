@@ -10,22 +10,27 @@
 	<div class="col-md-6">
 		<div class="box box-primary">
 			<div class="box-header">
-				<h3 class="box-title">   <i class="fa fa fa-tasks"></i>  Add Category</h3>
+				<h3 class="box-title">   <i class="fa fa fa-tasks"></i>  Update Category</h3>
 			</div><!-- /.box-header -->
 			<!-- form start -->
 			<form role="form">
 				<div class="box-body">
 					<div class="form-group">
 						<label for="text">Name</label>
-						<input type="text" class="form-control" id="name" placeholder="name" required>
+						<input type="text" class="form-control" id="name" placeholder="name">
 					</div>
 
+		
+
+		
+
+				
 				</div><!-- /.box-body -->
 
 				<div class="box-footer">
-					<a href="/index.html" class="btn btn-primary" >Back</a>
-					<button type="submit"  class="btn btn-primary" name="btn-addmore">Save Add More</button>
-					<button type="submit"  class="btn btn-primary" name="btn-save">Save</button>
+					<a href="/index.html" class="btn btn-success" >Back</a>
+					
+					<button type="submit"  class="btn btn-success" name="btn-save">Save</button>
 				</div>
 			</form>
 		</div><!-- /.box -->

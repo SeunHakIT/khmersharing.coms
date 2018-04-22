@@ -31,7 +31,7 @@
 					</div>
 
 					<div class="form-group" name="category">
-						<label>Main Videoos</label>
+						<label>Category</label>
 						<select class="form-control">
 							<option>option 1</option>
 							<option>option 2</option>
@@ -41,27 +41,18 @@
 						</select>
 					</div>
 
-					<div class="form-group"name="status">
-						<label>Status</label>
-						<select class="form-control">
-							<option>enable</option>
-
-							<option>disable</option>
-							
-						</select>
-					</div>
+					
 				</div><!-- /.box-body -->
 
 				<div class="box-footer">
-					<a href="/index.html" class="btn btn-primary" >Back</a>
-					<button type="submit"  class="btn btn-primary" name="btn-addmore">Save Add More</button>
-					<button type="submit"  class="btn btn-primary" name="btn-save">Save</button>
+					<a href="/index.html" class="btn btn-success" >Back</a>
+					
+					<button type="submit"  class="btn btn-success" name="btn-save">Update</button>
 				</div>
 			</form>
 		</div><!-- /.box -->
 	</div>
 	
 </div>
-
 
 @stop

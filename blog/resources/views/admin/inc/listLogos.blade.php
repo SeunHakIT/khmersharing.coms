@@ -8,7 +8,7 @@
 
    <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">  <i class="fa fa-play-circle-o"></i> Videos</h3> <a class="btn btn-primary btn-sm" href="/addvideos.html"><i class="fa fa-plus"></i>  Addnew</a>                                    
+                                    <h3 class="box-title">  <i class="fa fa-play-circle-o"></i> Videos</h3> <a class="btn btn-success btn-sm" href="/addvideos.html"><i class="fa fa-plus"></i>  Addnew</a>                                    
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">

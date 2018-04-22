@@ -30,9 +30,9 @@
   </head>
   <body class="skin-black">
     <!-- header logo: style can be found in header.less -->
-    @include('admin.inc.header');
+    @include('admin.inc.header')
     <div class="wrapper row-offcanvas row-offcanvas-left">
-     @include('admin.inc.sibar');
+     @include('admin.inc.sibar')
      <!-- Right side column. Contains the navbar and content of the page -->
      @include('admin.inc.content')
  </div><!-- ./wrapper -->
@@ -43,7 +43,7 @@
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 
        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-       <script src="{{ asset('js/plugins/AdminLTE/app.js') }}"></script>
+       <script src="{{ asset('js/app.js') }}"></script>
              <script src="{{ asset('js/plugins/datatables/jquery.dataTables.js') }}"></script>
                    <script src="{{ asset('js/plugins/datatables/dataTables.bootstrap.js') }}"></script>
      

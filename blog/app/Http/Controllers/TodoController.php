@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use\App\videos;
-class VidesosController extends Controller
+
+class TodoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class VidesosController extends Controller
      */
     public function index()
     {
-        $Videoss=videos::orderBy('id', 'DESC')->get();
-        return view('admin.inc.listVideos')->with('videos',$Videoss);
-
+        //
     }
 
     /**
@@ -27,9 +25,7 @@ class VidesosController extends Controller
     public function create()
     {
         //
-        //
-       return view('admin.inc.addVideos');
-   }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,10 +41,10 @@ class VidesosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Todo $todo)
     {
         //
     }
@@ -56,10 +52,10 @@ class VidesosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Todo $todo)
     {
         //
     }
@@ -68,10 +64,10 @@ class VidesosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Todo $todo)
     {
         //
     }
@@ -79,10 +75,10 @@ class VidesosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Todo $todo)
     {
         //
     }
