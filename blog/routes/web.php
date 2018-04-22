@@ -14,8 +14,7 @@
 Route::get('/', function () {
     return view('admin.index');
 });
-
-
+//adminpage
 Route::get ('admin/index.html',['uses' => 'IndexController@index'])->name('index');
 Route::get ('admin/listvideos.html',['uses' => 'VidesosController@index'])->name('listvideos');
 Route::get ('admin/addvideos.html',['uses' => 'VidesosController@create'])->name('addvideos');
