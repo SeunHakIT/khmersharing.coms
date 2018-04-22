@@ -14,19 +14,18 @@
 Route::get('/', function () {
     return view('admin.index');
 });
-
-
-Route::get ('admin/index.html',['uses' => 'IndexController@index'])->name('index');
-Route::get ('admin/listvideos.html',['uses' => 'VidesosController@index'])->name('listvideos');
-Route::get ('admin/addvideos.html',['uses' => 'VidesosController@create'])->name('addvideos');
-Route::get ('admin/listcategory.html',['uses' => 'CategoryController@index'])->name('listcategory');
-Route::get ('admin/addcategory.html',['uses' => 'CategoryController@create'])->name('addcategory');
-Route::get ('admin/listsubvideos.html',['uses' => 'SubvideosController@index'])->name('listsubvideos');
-Route::get ('admin/addsubvideos.html',['uses' => 'SubvideosController@create'])->name('addsubvideos');
-Route::get ('admin/listuser.html',['uses' => 'UserController@index'])->name('listuser');
-Route::get ('admin/adduser.html',['uses' => 'UserController@create'])->name('adduser');
-Route::get ('admin/listlogos.html',['uses' => 'LogosController@index'])->name('listlogos');
-Route::get ('admin/addlogos.html',['uses' => 'LogosController@create'])->name('addlogos');
-Route::get ('admin/listfooter.html',['uses' => 'FooterController@index'])->name('listfooter');
-Route::get ('admin/addfooter.html',['uses' => 'FooterController@create'])->name('addfooter');
+//adminpage
+Route::get ('/index.html',['uses' => 'IndexController@index'])->name('index');
+Route::get ('/listvideos.html',['uses' => 'VidesosController@index'])->name('listvideos');
+Route::get ('/addvideos.html',['uses' => 'VidesosController@create'])->name('addvideos');
+Route::get ('/listcategory.html',['uses' => 'CategoryController@index'])->name('listcategory');
+Route::get ('/addcategory.html',['uses' => 'CategoryController@create'])->name('addcategory');
+Route::get ('/listsubvideos.html',['uses' => 'SubvideosController@index'])->name('listsubvideos');
+Route::get ('/addsubvideos.html',['uses' => 'SubvideosController@create'])->name('addsubvideos');
+Route::get ('/listuser.html',['uses' => 'UserController@index'])->name('listuser');
+Route::get ('/adduser.html',['uses' => 'UserController@create'])->name('adduser');
+Route::get ('/listlogos.html',['uses' => 'LogosController@index'])->name('listlogos');
+Route::get ('/addlogos.html',['uses' => 'LogosController@create'])->name('addlogos');
+Route::get ('/listfooter.html',['uses' => 'FooterController@index'])->name('listfooter');
+Route::get ('/addfooter.html',['uses' => 'FooterController@create'])->name('addfooter');
 

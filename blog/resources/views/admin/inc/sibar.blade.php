@@ -26,13 +26,13 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="admin/index.html" >
+                            <a href="/index.html" >
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
                  
                         <li class="treeview">
-                            <a href="admin/listvideos.html" >
+                            <a href="/listvideos.html" >
                                 <i class="fa fa-play-circle-o"></i>
                                 <span>Videos</span>
                                
@@ -41,7 +41,7 @@
                         </li>
 
                                 <li class="treeview">
-                            <a href="admin/listcategory.html" >
+                            <a href="/listcategory.html" >
                                 <i class="fa fa fa-tasks"></i>
                                 <span>Category</span>
                                
@@ -50,7 +50,7 @@
                         </li>
 
                         <li class="treeview">
-                            <a href="admin/listsubvideos.html" >
+                            <a href="/listsubvideos.html" >
                                 <i class="fa fa-play-circle"></i>
                                 <span>Sub Videos</span>
 
@@ -59,7 +59,7 @@
                         </li>
 
                              <li class="treeview">
-                            <a href="admin/listuser.html" >
+                            <a href="/listuser.html" >
                                 <i class="fa fa-users"></i>
                                 <span>User</span>
                                 
@@ -68,16 +68,23 @@
                         </li>
 
                            <li class="treeview">
-                            <a href="admin/listlogos.html" >
+                            <a href="/listlogos.html" >
                               <i class="fa fa-dribbble"></i>
                                 <span>Logos</span>
                                 
                             </a>
                             
                         </li>
-
+             <li class="treeview">
+                            <a href="/listads.html" >
+                              <i class="fa fa-dribbble"></i>
+                                <span>ADS</span>
+                                
+                            </a>
+                            
+                        </li>
                         <li class="treeview">
-                            <a href="admin/listfooter.html" >
+                            <a href="/listfooter.html" >
                              <i class="fa fa-outdent"></i>
                                 <span>Footer</span>
                                 
