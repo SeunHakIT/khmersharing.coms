@@ -15,8 +15,8 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('name','100');
-            $table->string('picture','255')->default('#');;
+            $table->string('name','100')->unique();
+            $table->string('picture','255')->default('#');
             $table->string('url','100');
             $table->unsignedInteger('category_id');
             $table->tinyInteger('status')->default('1');

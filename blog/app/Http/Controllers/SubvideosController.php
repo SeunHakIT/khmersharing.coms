@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
-
+use \App\Model\Admin\videos;
 class SubvideosController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class SubvideosController extends Controller
      */
     public function index()
     {
-        //
+        
+
+       
           return view('admin.inc.listSubVideos');
     }
 

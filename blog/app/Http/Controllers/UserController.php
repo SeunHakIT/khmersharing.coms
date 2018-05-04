@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use \App\Model\Admin\Users;
 
 class UserController extends Controller
 {
@@ -13,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = Users::orderBy('id', 'DESC')->get();
+
+        return view('admin.user.listuser')->with('user', $users);
     }
 
     /**
@@ -23,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.addUser');
     }
 
     /**
@@ -34,7 +38,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required|unique:users|max:255',
+            'email' => 'required',
+            'password' => 'required',
+            'Confirm' => 'required|same:password',
+        ]);
+
+        $user = new Users();
+        $user->role=$request->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = hash::make($request->pasword);
+        $user->save();
+
+        return redirect()->route('listuser');
+
     }
 
     /**
@@ -56,7 +76,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Users::find($id);
+
+        return view('admin.user.upadateUser',compact('user'));
+       
+
+
     }
 
     /**
@@ -68,7 +93,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Users::find($id);
+        $user->name=$request->name;
+        $user->email=$request->email;
+       $user->password = hash::make($request->pasword);
+
+        $user->role=$request->role;
+        $user->save();
+        return redirect()->route('listuser');
+
+
     }
 
     /**
@@ -79,6 +113,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Users::find($id);
+        $user->delete();
+        return redirect()->route('listuser');
+
     }
 }

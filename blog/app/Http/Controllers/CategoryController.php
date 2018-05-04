@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use \App\Model\Admin\Category;
 
 class CategoryController extends Controller
 {
@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      return view('admin.inc.listCategory');
+        $category = category::orderBy('id', 'DESC')->get();
+        return view('admin.category.listCategory')->with('categorys', $category);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-         return view('admin.inc.addCategory');
+        return view('admin.category.addCategory');
     }
 
     /**
@@ -33,9 +34,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $Category = new Category();
+        $Category->cat_name = $req->category;
+        $Category->save();
+        return redirect()->route('listcategory');
+
     }
 
     /**
@@ -57,8 +62,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+       $categorys = category::find($id);
+
+       return view('admin.Category.updateCategory',compact('categorys'));
+
+   }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +77,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $categorys = category::find($id);
+
+        $categorys->cat_name = $request->category;
+        $categorys->save();
+      
+        return redirect()->route('listcategory');
     }
 
     /**
@@ -80,6 +94,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Category = Category::find($id);
+        $Category->delete();
+        return redirect()->route('listcategory');
     }
 }

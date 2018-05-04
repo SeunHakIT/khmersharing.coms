@@ -15,7 +15,7 @@ class CreateSubvideosTable extends Migration
     {
         Schema::create('subvideos', function (Blueprint $table) {
            $table->increments('id')->unsigned();
-            $table->string('name','100');
+            $table->string('name','100')->unique();
             $table->string('picture','255')->default('#');;
             $table->string('url','100');
             $table->unsignedInteger('videos_id');

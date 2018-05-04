@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use\App\videos;
+use \App\Model\Admin\Category;
+use \App\Model\Admin\videos;
+use App\Http\Controllers\Controller;
+
 class VidesosController extends Controller
 {
     /**
@@ -14,8 +16,11 @@ class VidesosController extends Controller
      */
     public function index()
     {
-        $Videoss=videos::orderBy('id', 'DESC')->get();
-        return view('admin.inc.listVideos')->with('videos',$Videoss);
+        $Videoss = DB::table('videos')
+        ->join('categorys', 'videos.category_id', '=', 'categorys.id')
+        ->select('videos.*', 'categorys.cat_name')
+        ->get();
+        return view('admin.videos.listVideos')->with('videos', $Videoss);
 
     }
 
@@ -26,10 +31,10 @@ class VidesosController extends Controller
      */
     public function create()
     {
-        //
-        //
-       return view('admin.inc.addVideos');
-   }
+        //using join table vidoes and category
+        $category = category::orderBy('id', 'DESC')->get();
+        return view('admin.videos.addVideos')->with('categorys', $category);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +44,21 @@ class VidesosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('file');
+        $fileName = "";
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads', $fileName);
+        }
+        $Videoss = new videos();
+        $Videoss->name = $request->name;
+        $Videoss->picture = $fileName;
+        $Videoss->url = $request->url;
+        $Videoss->category_id = $request->category;
+        $Videoss->status = $request->status;
+        $Videoss->save();
+        return redirect()->route('listvideos');
+
     }
 
     /**
@@ -50,7 +69,7 @@ class VidesosController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -61,7 +80,10 @@ class VidesosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $videos = videos::find($id);
+
+        return view('admin.videos.updateVideos', compact('videos'));
+
     }
 
     /**
@@ -73,7 +95,25 @@ class VidesosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = $request->file('file');
+        $fileName = "";
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads', $fileName);
+        }
+        $videos = videos::find($id);
+
+        if($videos){
+            $Videoss->name = $request->name;
+            $Videoss->picture = $fileName;
+            $Videoss->url = $request->url;
+            $Videoss->category_id = $request->category;
+            $Videoss->status = $request->status;
+            $Videoss->save();
+        }
+
+        return redirect()->route('listvideos');
+
     }
 
     /**
@@ -84,6 +124,33 @@ class VidesosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $videos = videos::find($id);
+        $videos->delete();
+        return redirect()->route('listvideos');
+
     }
+
+    public function updateStatus(Request $res)
+    {
+        $videos = videos::find($res->id);
+
+        $videos->status = $res->status;
+        $videos->save();
+
+        return redirect()->route('listvideos');
+
+    }
+
+    // public function category(){
+    //      $categoryss = category::orderBy('id', 'DESC')->get();
+    //     // return view('admin.videos.listVideos')->with('categorys', $category);
+    //      return view('admin.videos.updateVideos', compact('categoryss'));
+    // }
+public function category()
+{
+    $categories = Category::all();
+$articles = Article::all();
+return view('admin.videos.listvideos', compact('articles', 'categories'));
+
+}
 }
