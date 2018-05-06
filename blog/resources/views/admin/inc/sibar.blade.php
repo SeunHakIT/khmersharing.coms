@@ -1,101 +1,102 @@
- <!-- Left side column. contains the logo and sidebar -->
- <aside class="left-side sidebar-offcanvas">                
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-    <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-      </div>
-      <div class="pull-left info">
-        <p>Hello, Jane</p>
+  <aside class="main-sidebar">
 
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
-    </div>
-    
-    <!-- /.search form -->
-    <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu">
-      <li class="active">
-        <a href="/administrator/dashboard" >
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-        </a>
-      </li>
-      
-      <li class="treeview">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>Alexander Pierce</p>
+            <!-- Status -->
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+
+
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">HEADER</li>
+          <!-- Optionally, you can add icons to the links -->
+          <li class="active">
+            <a href="/administrator/dashboard" >
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/administrator/listvideos" >
+              <i class="fa fa-play-circle-o"></i>
+              <span>Videos</span>
+
+            </a>
+                
+          </li>
+
+          <li>
+            <a href="/administrator/listcategory" >
+              <i class="fa fa fa-tasks"></i>
+              <span>Category</span>
+
+            </a>
+
+          </li>
+
+          <li>
+            <a href="{{'/administrator/listsubvideos'}}" >
+              <i class="fa fa-play-circle"></i>
+              <span>Sub Videos</span>
+
+            </a>
+
+          </li>
+
+          <li>
+            <a href="{{'/administrator/listuser'}}" >
+              <i class="fa fa-users"></i>
+              <span>User</span>
+
+            </a>
+
+          </li>
+
+          <li>
+            <a href="{{ route('listlogos') }}" >
+              <i class="fa fa-dribbble"></i>
+              <span>Logos</span>
+
+            </a>
+
+          </li>
+          <li>
+            <a href="/administrator/listads" >
+             <i class="fa fa-adn"></i>
+             <span>ADS</span>
+
+           </a>
+
+         </li>
+         <li>
+          <a href="/administrator/listfooter" >
+           <i class="fa fa-outdent"></i>
+           <span>Footer</span>
+
+         </a>
+
+       </li>
+
+       <li>
         <a href="/administrator/listvideos" >
-          <i class="fa fa-play-circle-o"></i>
-          <span>Videos</span>
-          
-        </a>
-        
-      </li>
+         <i class="glyphicon glyphicon-log-out"></i>
+         <span>Log out</span>
 
-      <li class="treeview">
-        <a href="/administrator/listcategory" >
-          <i class="fa fa fa-tasks"></i>
-          <span>Category</span>
-          
-        </a>
-        
-      </li>
-
-      <li class="treeview">
-        <a href="{{'/administrator/listsubvideos'}}" >
-          <i class="fa fa-play-circle"></i>
-          <span>Sub Videos</span>
-
-        </a>
-
-      </li>
-
-      <li class="treeview">
-        <a href="{{'/administrator/listuser'}}" >
-          <i class="fa fa-users"></i>
-          <span>User</span>
-          
-        </a>
-        
-      </li>
-
-      <li class="treeview">
-        <a href="{{ route('listlogos') }}" >
-          <i class="fa fa-dribbble"></i>
-          <span>Logos</span>
-          
-        </a>
-        
-      </li>
-      <li class="treeview">
-        <a href="/administrator/listads" >
-         <i class="fa fa-adn"></i>
-         <span>ADS</span>
-         
        </a>
-       
+
      </li>
-     <li class="treeview">
-      <a href="/administrator/listfooter" >
-       <i class="fa fa-outdent"></i>
-       <span>Footer</span>
-       
-     </a>
-     
-   </li>
-
-   <li class="treeview">
-    <a href="/administrator/listvideos" >
-     <i class="glyphicon glyphicon-log-out"></i>
-     <span>Log out</span>
-     
-   </a>
-   
- </li>
-
-
-
-</ul>
-</section>
-<!-- /.sidebar -->
+   </ul>
+   <!-- /.sidebar-menu -->
+ </section>
+ <!-- /.sidebar -->
 </aside>
