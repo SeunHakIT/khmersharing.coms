@@ -43,4 +43,8 @@ Route::prefix('administrator')->group(function () {
     //Logos
     Route::get('/logos', 'LogosController@create')->name('addlogos');
     Route::get('/listlogos', 'LogosController@index')->name('listlogos');
+    Route::post('/listlogos', 'LogosController@store')->name('Savelogos'); 
+    Route::get('/delectlogos/{id}', 'LogosController@destroy')->name('destroy');
+    Route::get('/updatelogos/{id}', 'LogosController@edit')->name('updatelogos');
+    Route::post('/savelogos/{id}', 'LogosController@update')->name('savelogos');
 });

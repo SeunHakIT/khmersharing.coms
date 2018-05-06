@@ -38,11 +38,13 @@
         </tr>
       </thead>
       <tbody>
-
-        @foreach ($user as $users)
+        @php
+        $i=1;
+        @endphp
+        @foreach ($user as $users )
 
         <tr>
-         <td>0</td>
+         <td>{{ $i++ }}</td>
          <td>{{$users->name}}</td>
          <td class="img"><img src="/uploads/users/{{$users->picture}}" alt="{{ $users->name }}"></td>
          <td>{{$users->email}}</td>

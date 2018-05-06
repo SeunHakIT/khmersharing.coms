@@ -28,14 +28,19 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th class="category_name">No</th>
                     <th class="category_name">Category Name</th>
                     <th class="action-category" >Action</th>
                     
                 </tr>
             </thead>
             <tbody>
+                @php
+$i=1;
+                @endphp
                 @foreach($categorys as $category)
                 <tr>
+                    <td>{{$i++}}</td>
                     <td>{{$category->cat_name}}</td>
                     <td>
 
@@ -51,6 +56,7 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th class="category_name">No</th>
                     <th class="category_name">Category Name</th>
                     <th class="action-category">Action</th>
                 </tr>

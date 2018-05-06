@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use \App\Model\Admin\logos;
+use Session;
 class LogosController extends Controller
 {
     /**
@@ -13,8 +13,11 @@ class LogosController extends Controller
      */
     public function index()
     {
-        return view('admin.logos.listLogos');
-   }
+        $logo = logos::orderBy('id', 'DESC')->get();
+
+        return view('admin.logos.listLogos')->with('logos', $logo);
+
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +37,27 @@ class LogosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $logos=new logos();
+        $file = $request->file('file');
+        $fileName = "";
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads/logos', $fileName);
+        }
+
+        $logos->logos_name=$request->logos_name;
+        $logos->icon = $fileName;
+        if($logos->save()){
+
+            Session::flash('success', 'Logos Insert Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Logos Insert Not Sucessfully');
+
+        }
+
+        return redirect()->route('listlogos');
     }
 
     /**
@@ -56,7 +79,9 @@ class LogosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $logos = logos::find($id);
+
+        return view('admin.logos.updatelgos',compact('logos'));
     }
 
     /**
@@ -68,7 +93,31 @@ class LogosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $logos = logos::find($id);
+
+        $file = $request->file('file');
+        $fileName = "";
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads/logos', $fileName);
+        }
+
+        $logos->logos_name=$request->name;
+        if($fileName!=""){
+            $logos->icon=$fileName;
+        }
+
+        if( $logos->save()){
+
+            Session::flash('success', 'Logos Update Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Logos Update Not Sucessfully');
+
+        }
+
+        return redirect()->route('listlogos');
     }
 
     /**
@@ -79,6 +128,15 @@ class LogosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logos = logos::find($id);
+        if($logos->delete()){
+
+            Session::flash('success', 'Logos Delected Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Logos Delect Not Sucessfully');
+        }
+        return redirect()->route('listlogos');
     }
 }

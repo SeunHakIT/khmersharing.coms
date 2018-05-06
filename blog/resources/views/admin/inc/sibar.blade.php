@@ -87,14 +87,6 @@
 
        </li>
 
-       <li>
-        <a href="/administrator/listvideos" >
-         <i class="glyphicon glyphicon-log-out"></i>
-         <span>Log out</span>
-
-       </a>
-
-     </li>
    </ul>
    <!-- /.sidebar-menu -->
  </section>

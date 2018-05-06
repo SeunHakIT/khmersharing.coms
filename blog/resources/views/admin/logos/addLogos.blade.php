@@ -13,12 +13,12 @@
 				<h3 class="box-title">   <i class="fa fa fa-tasks"></i>  Add Category</h3>
 			</div><!-- /.box-header -->
 			<!-- form start -->
-			<form role="form" method="post">
+			<form role="form" method="post" action="{{ route('Savelogos') }}" enctype="multipart/form-data">
 				{!! csrf_field() !!}
 				<div class="box-body">
 					<div class="form-group">
 						<label for="text">Name</label>
-						<input type="text" class="form-control" id="name" name="logos_name" placeholder="logos Name" required  >
+						<input type="text" class="form-control" id="name" name="logos_name" placeholder="logos Name" required  value="{{ old('logos_name') }}" >
 					</div>
 
 

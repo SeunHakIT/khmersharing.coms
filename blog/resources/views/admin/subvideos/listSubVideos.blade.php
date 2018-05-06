@@ -28,6 +28,7 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
+              <th>No</th>
                 <th>title</th>
                 <th>picture</th>
                 <th>url</th>
@@ -36,8 +37,12 @@
             </tr>
         </thead>
         <tbody>
+          @php
+$i=1;
+          @endphp
             @foreach($subvideos as $sub)
             <tr>
+               <td>{{ $i++ }}</td>
                 <td>{{ $sub->subname }}</td>
                 <td class="img"><img src="/uploads/{{ $sub->picture }}" alt="{{ $sub->name }}"></td>
                 <td>{{ $sub->url }}</td>
@@ -61,6 +66,7 @@
        </tbody>
        <tfoot>
         <tr>
+            <th>No</th>
             <th>title</th>
             <th>picture</th>
             <th>url</th>

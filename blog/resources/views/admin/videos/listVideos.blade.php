@@ -32,6 +32,7 @@
   <table id="example1" class="table table-bordered table-striped">
     <thead>
       <tr>
+        <th>No</th>
         <th>Tile</th>
         <th class="width-img">Pricture</th>
         <th>Url</th>
@@ -40,10 +41,14 @@
       </tr>
     </thead>
     <tbody>
+        @php
+        $i=1;
+        @endphp
       @foreach($videos as $videoss)
       <tr>
 
-        <td>{{$videoss->name}}</td>
+        <td>{{$i++}}</td>  
+         <td>{{$videoss->name}}</td>
         <td class="img"><a href="{{$videoss->url}}" title="{{ $videoss->name }}"><img src="/uploads/{{$videoss->picture}}" alt=""></a></td>
         <td>{{$videoss->url}}</td>
         <td>{{$videoss->cat_name}}</td>
@@ -65,6 +70,7 @@
     <tfoot>
       <tr>
 
+        <th>No</th>
         <th>Tile</th>
         <th>Pricture</th>
         <th>Url</th>
