@@ -10,6 +10,13 @@
     <div class="box-header">
         <h3 class="box-title">  <i class="fa fa fa-tasks"></i> Category</h3> <a class="btn btn-success btn-sm" href="{{route('addcategory')}}"><i class="fa fa-plus"></i>  Addnew</a>                                    
     </div><!-- /.box-header -->
+    <div class="flash-message">
+        @foreach (['danger', 'success'] as $msg)
+        @if(Session::has($msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get($msg) }}</p>
+        @endif
+        @endforeach
+    </div>
     <div class="box-body table-responsive">
         <table id="example1" class="table table-bordered table-striped">
             <thead>

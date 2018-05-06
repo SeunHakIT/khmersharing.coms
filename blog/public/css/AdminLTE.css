@@ -1149,10 +1149,18 @@ body > .header .logo .icon {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  margin-bottom: 15px;
+  margin-bottom: 45px;
+  height: 177px;
+}
+
+.small-box.bg-green p {
+    text-align: center;
+    right: 56px;
+    position: relative;
 }
 .small-box > .inner {
-  padding: 10px;
+  padding: 11px;
+  height: 149px;
 }
 .small-box > .small-box-footer {
   position: relative;
@@ -1172,12 +1180,15 @@ body > .header .logo .icon {
 .small-box h3 {
   font-size: 38px;
   font-weight: bold;
-  margin: 0 0 10px 0;
+  margin: 0 0 3px 81px;
   white-space: nowrap;
   padding: 0;
 }
 .small-box p {
   font-size: 15px;
+  text-align: center;
+  right: 67px;
+  position: relative;
 }
 .small-box p > small {
   display: block;
@@ -1192,8 +1203,8 @@ body > .header .logo .icon {
 .small-box .icon {
   position: absolute;
   top: auto;
-  bottom: 5px;
-  right: 5px;
+  bottom: 34px;
+  right: 18px;
   z-index: 0;
   font-size: 90px;
   color: rgba(0, 0, 0, 0.15);

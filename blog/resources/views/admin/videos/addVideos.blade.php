@@ -13,22 +13,35 @@
 				<h3 class="box-title"><i class="fa fa-play-circle-o"></i>  Add Videos</h3>
 			</div><!-- /.box-header -->
 			<!-- form start -->
-			<form role="form" method="post" enctype="multipart/form-data">
+			<form role="form" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
 				{!! csrf_field() !!}
 				<div class="box-body">
+					@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+					@endif
+
 					<div class="form-group">
 						<label for="text">Name</label>
-						<input type="text" class="form-control" id="name" name="name" placeholder="name">
+						<input type="text" class="form-control" name="url" id="name" placeholder="Name" value="{{old('name')}}">
+					</div>
+
+						
+					
+
+					<div class="form-group">
+						<label for="text">Picture</label>
+						<input type="file" class="form-control" id="name" name="file" value="{{old('file')}}" placeholder="file" required  >
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputFile">Picture</label>
-						<input type="file" name="file" id="exampleInputFile">
-						
-					</div>
-					<div class="form-group">
 						<label for="text">Url</label>
-						<input type="text" class="form-control" name="url" id="url" placeholder="url">
+						<input type="text" class="form-control" name="url" id="url" placeholder="url" value="{{old('url')}}">
 					</div>
 
 					<div class="form-group" >
@@ -50,11 +63,12 @@
 							
 						</select>
 					</div>
+					</div>
 				</div><!-- /.box-body -->
 				<div class="box-footer">
 					<a href="/index.html" class="btn btn-success" >Back</a>
 					<button type="submit"  class="btn btn-success" name="btn-addmore">Save Add More</button>
-					<button type="submit"  class="btn btn-success" name="btn-save">Save</button>
+					<button type="submit"  class="btn btn-success" name="btn-save" id="#add">Save</button>
 				</div>
 			</form>
 		</div><!-- /.box -->

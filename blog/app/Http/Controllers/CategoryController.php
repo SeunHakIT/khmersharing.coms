@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Model\Admin\Category;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -38,7 +39,16 @@ class CategoryController extends Controller
     {
         $Category = new Category();
         $Category->cat_name = $req->category;
-        $Category->save();
+
+
+        if( $Category->save()){
+
+            Session::flash('success', 'Category Insert Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Category Delect Not Sucessfully');
+        }
         return redirect()->route('listcategory');
 
     }
@@ -62,11 +72,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-       $categorys = category::find($id);
+     $categorys = category::find($id);
 
-       return view('admin.Category.updateCategory',compact('categorys'));
+     return view('admin.Category.updateCategory',compact('categorys'));
 
-   }
+ }
 
     /**
      * Update the specified resource in storage.
@@ -81,8 +91,16 @@ class CategoryController extends Controller
         $categorys = category::find($id);
 
         $categorys->cat_name = $request->category;
-        $categorys->save();
-      
+        if(   $categorys->save()){
+
+            Session::flash('success', 'Category Updated Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Category Updated Not Sucessfully');
+        }
+
+
         return redirect()->route('listcategory');
     }
 
@@ -95,7 +113,16 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $Category = Category::find($id);
-        $Category->delete();
+
+        if(  $Category->delete()){
+
+            Session::flash('success', 'Category Delected Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Category Delected Not Sucessfully');
+        }
+      
         return redirect()->route('listcategory');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use \App\Model\Admin\Users;
+use Session;
 
 class UserController extends Controller
 {
@@ -41,18 +42,33 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name' => 'required|unique:users|max:255',
-            'email' => 'required',
+            'email' => 'required|unique:users|email',
             'password' => 'required',
             'Confirm' => 'required|same:password',
         ]);
-
+        $file = $request->file('file');
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads/users', $fileName);
+        }
         $user = new Users();
+
+
         $user->role=$request->role;
+        $user->picture = $fileName;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = hash::make($request->pasword);
-        $user->save();
+        
+        if($user->save()){
 
+            Session::flash('success', 'User Insert Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'User Insert Not Sucessfully');
+
+        }
         return redirect()->route('listuser');
 
     }
@@ -79,7 +95,7 @@ class UserController extends Controller
         $user = Users::find($id);
 
         return view('admin.user.upadateUser',compact('user'));
-       
+
 
 
     }
@@ -93,13 +109,36 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Users::find($id);
-        $user->name=$request->name;
-        $user->email=$request->email;
-       $user->password = hash::make($request->pasword);
 
+        $user = Users::find($id);
+
+        $file = $request->file('file');
+        $fileName = "";
+        if (!empty($file)) {
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads/users', $fileName);
+        }
+
+        $user->name=$request->name;
+        if($fileName!=""){
+            $user->picture=$fileName;
+        }
+        
+
+        $user->email=$request->email;
+        $user->password = hash::make($request->pasword);
         $user->role=$request->role;
-        $user->save();
+
+        if( $user->save()){
+
+            Session::flash('success', 'User Update Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'User Insert Not Sucessfully');
+
+        }
+       
         return redirect()->route('listuser');
 
 
@@ -114,7 +153,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = Users::find($id);
-        $user->delete();
+       
+          if( $user->delete()){
+
+            Session::flash('success', 'User Update Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'User Insert Not Sucessfully');
+
+        }
         return redirect()->route('listuser');
 
     }

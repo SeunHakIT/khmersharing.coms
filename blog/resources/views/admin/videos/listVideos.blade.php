@@ -8,8 +8,19 @@
 
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title" >  <i class="fa fa-play-circle-o"></i> Videos</h3>   <a class="btn btn btn-success btn-sm" href="/administrator/addvideos"><i class="fa fa-plus"></i>  Addnew</a>                                    
+    <h3 class="box-title" >  <i class="fa fa-play-circle-o"></i> Videos</h3>   <a class="btn btn btn-success btn-sm" href="/administrator/addvideos"><i class="fa fa-plus"></i>  Addnew</a>   
+
+
+
   </div><!-- /.box-header -->
+  
+  <div class="flash-message">
+    @foreach (['danger', 'success'] as $msg)
+    @if(Session::has($msg))
+    <p class="alert alert-{{ $msg }}">{{ Session::get($msg) }}</p>
+    @endif
+    @endforeach
+  </div>
   <div class="box-body table-responsive">
     <table id="example1" class="table table-bordered table-striped">
       <thead>
@@ -31,13 +42,13 @@
           <td>{{$videoss->cat_name}}</td>
           <td>
             @if($videoss->status == 1)
-            <a href="{{route('updateStatus',['id'=>$videoss->id,'status'=>0])}}"  class="btn btn-success btn-sm" ><i class="fa fa-check"> </i></a>
+            <a href="{{route('updateStatus',['id'=>$videoss->id,'status'=>0])}}"  id="alert" class="btn btn-success btn-sm" ><i class="fa fa-check"> </i></a>
             @else
-            <a href="{{route('updateStatus',['id'=>$videoss->id,'status'=>1])}}"  class="btn btn-danger btn-sm" ><i class="fa fa-times"></i></a>
+            <a href="{{route('updateStatus',['id'=>$videoss->id,'status'=>1])}}"  id="alert1" class="btn btn-danger btn-sm" ><i class="fa fa-times"></i></a>
             @endif
             <a href="{{route('edit-videos',['id'=>$videoss->id])}}" title="" class="btn btn btn-success btn-sm" ><i class="fa fas fa-edit"></i></a>
-            
-            <a href="/delect.html/{{$videoss->id}}" title="" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i></a>
+
+            <a  href="/administrator/delect/{{ $videoss->id }}" title="" id="" class="btn btn-danger btn-sm delete-model"  ><i class="fa fa-trash-o"></i></a>
 
           </td>
 
@@ -59,4 +70,9 @@
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 
+
+
+
+
 @stop
+

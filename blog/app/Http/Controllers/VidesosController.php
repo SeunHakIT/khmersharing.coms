@@ -5,8 +5,10 @@ use DB;
 use Illuminate\Http\Request;
 use \App\Model\Admin\Category;
 use \App\Model\Admin\videos;
+use \App\Model\Admin\Subvideos;
+use \App\Model\Admin\Users;
 use App\Http\Controllers\Controller;
-
+use Session;
 class VidesosController extends Controller
 {
     /**
@@ -43,23 +45,51 @@ class VidesosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
+
     {
+
+
+        $this->validate($request, [
+            'name' => 'required|unique:users|max:255',
+
+            'url' => 'required',
+        ]);
+
+
         $file = $request->file('file');
         $fileName = "";
         if (!empty($file)) {
             $fileName = $file->getClientOriginalName();
             $file->move('uploads', $fileName);
         }
+
         $Videoss = new videos();
         $Videoss->name = $request->name;
         $Videoss->picture = $fileName;
         $Videoss->url = $request->url;
         $Videoss->category_id = $request->category;
         $Videoss->status = $request->status;
-        $Videoss->save();
-        return redirect()->route('listvideos');
+
+        if($Videoss->save()){
+
+         Session::flash('success', 'Insert Sucessfully');
+
+     }else{
+
+        Session::flash('danger', 'Insert not Sucessfully');
 
     }
+
+    return redirect()->route('listvideos');
+
+
+
+
+
+
+
+}
 
     /**
      * Display the specified resource.
@@ -80,11 +110,13 @@ class VidesosController extends Controller
      */
     public function edit($id)
     {
-        $videos = videos::find($id);
+        // $videos = videos::find($id);
 
-        return view('admin.videos.updateVideos', compact('videos'));
-
-    }
+        // return view('admin.videos.updateVideos', compact('videos'));
+     $categories = Category::all();
+     $videos = $videos = videos::find($id);
+     return view('admin.videos.updateVideos')->with('videos', $videos)->with('category', $categories);
+ }
 
     /**
      * Update the specified resource in storage.
@@ -95,26 +127,37 @@ class VidesosController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $Videoss =videos::find($id);
         $file = $request->file('file');
         $fileName = "";
         if (!empty($file)) {
             $fileName = $file->getClientOriginalName();
             $file->move('uploads', $fileName);
         }
-        $videos = videos::find($id);
 
-        if($videos){
-            $Videoss->name = $request->name;
-            $Videoss->picture = $fileName;
-            $Videoss->url = $request->url;
-            $Videoss->category_id = $request->category;
-            $Videoss->status = $request->status;
-            $Videoss->save();
-        }
+        $Videoss->name=$request->name;
+        if($fileName!=""){
+          $Videoss->picture=$fileName;
+      }
 
-        return redirect()->route('listvideos');
+      $Videoss->url=$request->url;
+      $Videoss->category_id=$request->category;
+      $Videoss->status=$request->status;
+
+
+      if($Videoss->save()){
+
+         Session::flash('success', 'Update Data Sucessfully');
+
+     }else{
+
+        Session::flash('danger', 'Update Data Not Sucessfully');
 
     }
+    return redirect()->route('listvideos');
+
+}
 
     /**
      * Remove the specified resource from storage.
@@ -124,9 +167,21 @@ class VidesosController extends Controller
      */
     public function destroy($id)
     {
+
         $videos = videos::find($id);
-        $videos->delete();
+
+
+        if( $videos->delete()){
+
+            Session::flash('success', 'Delected Data Sucessfully');
+
+        }else{
+
+            Session::flash('danger', 'Delect Data Not Sucessfully');
+
+        }
         return redirect()->route('listvideos');
+
 
     }
 
@@ -135,22 +190,27 @@ class VidesosController extends Controller
         $videos = videos::find($res->id);
 
         $videos->status = $res->status;
-        $videos->save();
 
-        return redirect()->route('listvideos');
+        if($videos->save()){
+
+         Session::flash('success', 'Update Data Sucessfully');
+
+     }else{
+
+        Session::flash('danger', 'Update Data Not Sucessfully');
 
     }
+    
 
-    // public function category(){
-    //      $categoryss = category::orderBy('id', 'DESC')->get();
-    //     // return view('admin.videos.listVideos')->with('categorys', $category);
-    //      return view('admin.videos.updateVideos', compact('categoryss'));
-    // }
-public function category()
-{
-    $categories = Category::all();
-$articles = Article::all();
-return view('admin.videos.listvideos', compact('articles', 'categories'));
+    return redirect()->route('listvideos');
 
 }
+public function countvideos(){
+   $count = videos::count();
+   $sub = Subvideos::count();
+   $Users = Users::count();
+   return view('admin.index')->with('count', $count)->with('sub',$sub)->with('Users',$Users);
+}
+
+
 }

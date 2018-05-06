@@ -13,8 +13,8 @@ class LogosController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return view('admin.logos.listLogos');
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +23,7 @@ class LogosController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.logos.addLogos');
     }
 
     /**

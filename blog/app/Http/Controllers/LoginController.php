@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use \App\Model\Admin\Users;
+
 
 class LoginController extends Controller
 {
@@ -17,22 +16,19 @@ class LoginController extends Controller
         return view('admin.login.index');
     }
 
-    public function login(Request $res){
-     
-    $this->validate($res,[
-  
-    'email' => 'required|email',
-    'password' => 'required',
- 
-]);
 
-dd($res->id);
- if (Auth::attempt(['email' => $res->email, 'password' => $res->password])) {
-            // Authentication passed...
-            return redirect()->intended('/dashboard');
+    public function postLogin(Request $request) {
 
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
+
+        if(Auth::attempt($credentials)) {
+            return redirect()->route('/dashboard');       
+        }
+
+        return 'Failure'; 
     }
-
-}
 
 }
